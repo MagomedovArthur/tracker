@@ -9,13 +9,13 @@ public class Shop {
     }
 
     public static int indexOfNull(Product[] products) {
-        int emptyCellNumber = -1;
+        int result = -1;
         for (int i = 0; i < products.length; i++) {
             if (products[i] == null) {
-                emptyCellNumber = i;
+                result = i;
                 break;
             }
         }
-        return emptyCellNumber;
+        return result;
     }
 }

@@ -13,19 +13,19 @@ public class Library {
         books[3] = bookFour;
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
-            System.out.println(bk.getBookName() + " - " + bk.getNumberOfPages() + " pages");
+            System.out.println(bk.getName() + " - " + bk.getPages() + " pages");
         }
         Book booksReserve = books[0];
         books[0] = books[3];
         books[3] = booksReserve;
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
-            System.out.println(bk.getBookName() + " - " + bk.getNumberOfPages() + " pages");
+            System.out.println(bk.getName() + " - " + bk.getPages() + " pages");
         }
         for (int index = 0; index < books.length; index++) {
             Book bk = books[index];
-            if (bk.getBookName().equals("Clean code")) {
-                System.out.println(bk.getBookName() + " - " + bk.getNumberOfPages() + " pages");
+            if ("Clean code".equals(bk.getName())) {
+                System.out.println(bk.getName() + " - " + bk.getPages() + " pages");
             }
         }
     }

@@ -1,6 +1,6 @@
 package ru.job4j.oop;
 
-public class Student {
+public class Students {
 
     public void music() {
         System.out.println("Tra tra tra");
@@ -11,7 +11,7 @@ public class Student {
     }
 
     public static void main(String[] args) {
-        Student petya = new Student();
+        Students petya = new Students();
         petya.music();
         petya.music();
         petya.music();

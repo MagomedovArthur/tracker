@@ -66,4 +66,45 @@ public class StartUITest {
                 "Menu:" + System.lineSeparator() + "0. Exit" + System.lineSeparator()
         ));
     }
+
+    @Test
+    public void whenFindAll() {
+        Tracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Input input = new StubInput(new String[]{"0", "Item_1", "0", "Item_2", "1"});
+        UserAction[] actions = {
+                new CreateAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findAll().length, is(2));
+    }
+
+    @Test
+    public void findByName() {
+        Tracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Input input = new StubInput(new String[]{"0", "Item_1", "0", "Item_2", "0", "Item_1", "1"});
+        UserAction[] actions = {
+                new CreateAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findByName("Item_1").length, is(2));
+    }
+
+    @Test
+    public void findById() {
+        Tracker tracker = new Tracker();
+        Output output = new StubOutput();
+        Item item = new Item("Item_1");
+        tracker.add(item);
+        Input input = new StubInput(new String[]{"0", "Item_2", "0", "Item_3", "1"});
+        UserAction[] actions = {
+                new CreateAction(output),
+                new ExitAction(output)
+        };
+        new StartUI(output).init(input, tracker, actions);
+        assertThat(tracker.findById(item.getId()).getName(), is("Item_1"));
+    }
 }

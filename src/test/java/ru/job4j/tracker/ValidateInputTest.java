@@ -36,8 +36,7 @@ public class ValidateInputTest {
                 new String[]{"6"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        int selected = input.askInt("=== Show all items ===\n"
-                + "Хранилище еще не содержит заявок\n");
+        int selected = input.askInt("Enter number");
         assertThat(selected, is(6));
     }
 
@@ -48,8 +47,7 @@ public class ValidateInputTest {
                 new String[]{"4", "5"}
         );
         ValidateInput input = new ValidateInput(out, in);
-        int selected = input.askInt("=== Find item by id ===\n"
-                + "Enter id:");
+        int selected = input.askInt("Enter id:");
         assertThat(selected, is(4));
         selected = input.askInt("Заявка с введенным id: 3 не найдена.\n"
                 + "Menu:");

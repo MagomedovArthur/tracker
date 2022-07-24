@@ -34,19 +34,7 @@ public class AnalyzeByMap {
     }
 
     public static List<Label> averageScoreBySubject(List<Pupil> pupils) {
-        Map<String, Integer> subjectAverageRate = new LinkedHashMap<>();
-        for (Pupil pupil : pupils) {
-            for (Subject subject : pupil.subjects()) {
-                String subjectName = subject.name();
-                int currentScore = subject.score();
-                int lastScore = 0;
-                if (subjectAverageRate.containsKey(subjectName)) {
-                    lastScore = subjectAverageRate.get(subjectName);
-                }
-                int sum = lastScore + currentScore;
-                subjectAverageRate.put(subjectName, sum);
-            }
-        }
+        Map<String, Integer> subjectAverageRate = sumScoreBySubject(pupils);
         List<Label> labelList = new ArrayList<>();
         for (String subject : subjectAverageRate.keySet()) {
             double aver = subjectAverageRate.get(subject) / pupils.size();
@@ -72,25 +60,30 @@ public class AnalyzeByMap {
     }
 
     public static Label bestSubject(List<Pupil> pupils) {
-        Map<String, Integer> subjectAndScore = new LinkedHashMap<>();
+        Map<String, Integer> subjectAverageRate = sumScoreBySubject(pupils);
+        List<Label> labelList = new ArrayList<>();
+        for (String subject : subjectAverageRate.keySet()) {
+            labelList.add(new Label(subject, subjectAverageRate.get(subject)));
+        }
+        labelList.sort(Comparator.naturalOrder());
+        Label bestSubject = labelList.get(labelList.size() - 1);
+        return bestSubject;
+    }
+
+    private static Map<String, Integer> sumScoreBySubject(List<Pupil> pupils) {
+        Map<String, Integer> subjectAverageRate = new LinkedHashMap<>();
         for (Pupil pupil : pupils) {
             for (Subject subject : pupil.subjects()) {
                 String subjectName = subject.name();
                 int currentScore = subject.score();
                 int lastScore = 0;
-                if (subjectAndScore.containsKey(subjectName)) {
-                    lastScore = subjectAndScore.get(subjectName);
+                if (subjectAverageRate.containsKey(subjectName)) {
+                    lastScore = subjectAverageRate.get(subjectName);
                 }
                 int sum = lastScore + currentScore;
-                subjectAndScore.put(subjectName, sum);
+                subjectAverageRate.put(subjectName, sum);
             }
         }
-        List<Label> labelList = new ArrayList<>();
-        for (String subject : subjectAndScore.keySet()) {
-            labelList.add(new Label(subject, subjectAndScore.get(subject)));
-        }
-        labelList.sort(Comparator.naturalOrder());
-        Label bestSubject = labelList.get(labelList.size() - 1);
-        return bestSubject;
+        return subjectAverageRate;
     }
 }

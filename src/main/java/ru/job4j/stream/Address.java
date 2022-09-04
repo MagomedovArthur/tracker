@@ -1,9 +1,8 @@
 package ru.job4j.stream;
 
-import java.util.Comparator;
 import java.util.Objects;
 
-public class Address implements Comparator<Address> {
+public class Address {
     private String city;
 
     private String street;
@@ -21,11 +20,6 @@ public class Address implements Comparator<Address> {
 
     public String getCity() {
         return city;
-    }
-
-    @Override
-    public int compare(Address o1, Address o2) {
-        return o1.city.compareTo(o2.city);
     }
 
     @Override

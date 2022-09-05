@@ -4,20 +4,9 @@ import java.util.stream.Stream;
 
 public class GenerateCard {
     public static void main(String[] args) {
-        Suit[] suits = {
-                Suit.Diamonds,
-                Suit.Hearts,
-                Suit.Spades,
-                Suit.Clubs
-        };
-        Value[] values = {
-                Value.V_6,
-                Value.V_7,
-                Value.V_8
-        };
-        Stream.of(suits)
-                .flatMap(s -> Stream.of(values)
-                        .map(v -> s + " " + v))
+        Stream.of(Suit.values())
+                .flatMap(s -> Stream.of(Value.values())
+                        .map(v -> new Card(s, v)))
                 .forEach(System.out::println);
     }
 }

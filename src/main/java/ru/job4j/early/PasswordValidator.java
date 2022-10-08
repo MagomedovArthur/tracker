@@ -45,10 +45,12 @@ public class PasswordValidator {
     }
 
     private static boolean containStrings(String password) {
-        return password.equalsIgnoreCase("qwerty")
-                || password.equalsIgnoreCase("admin")
-                || password.equalsIgnoreCase("user")
-                || password.equals("12345")
-                || password.equalsIgnoreCase("password");
+        String[] unnecessaryStrings = {"qwerty", "admin", "user", "12345", "password"};
+        for (String str : unnecessaryStrings) {
+            if (password.equalsIgnoreCase(str)) {
+                return true;
+            }
+        }
+        return false;
     }
 }

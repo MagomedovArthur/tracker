@@ -47,7 +47,7 @@ public class PasswordValidator {
     private static boolean containStrings(String password) {
         String[] unnecessaryStrings = {"qwerty", "admin", "user", "12345", "password"};
         for (String str : unnecessaryStrings) {
-            if (password.equalsIgnoreCase(str)) {
+            if (password.toLowerCase().contains(str)) {
                 return true;
             }
         }

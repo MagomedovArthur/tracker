@@ -95,7 +95,7 @@ public class SqlTracker implements Store {
         try (PreparedStatement statement = cn.prepareStatement("SELECT * FROM items")) {
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
                     allItems.add(new Item(
                             resultSet.getInt("id"),
@@ -117,7 +117,7 @@ public class SqlTracker implements Store {
             statement.setString(1, itemName);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
                     items.add(new Item(
                             resultSet.getInt("id"),
@@ -139,7 +139,7 @@ public class SqlTracker implements Store {
             statement.setInt(1, id);
             try (ResultSet resultSet = statement.executeQuery()) {
                 while (resultSet.next()) {
-                    Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+                    Timestamp timestamp = resultSet.getTimestamp("created");
                     LocalDateTime localDateTime = timestamp.toLocalDateTime();
                     item = new Item(
                             resultSet.getInt("id"),

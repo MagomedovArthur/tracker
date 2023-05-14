@@ -72,10 +72,11 @@ public class SqlTrackerTest {
     public void whenEditItemAndFindByGeneratedIdThenMustBeTheSameAsEdited() {
         SqlTracker tracker = new SqlTracker(connection);
         Item item = new Item("item");
-        Item newItem = new Item("second_item");
         tracker.add(item);
+        Item newItem = new Item("second_item");
         tracker.replace(item.getId(), newItem);
-        assertThat(tracker.findById(item.getId())).isEqualTo(newItem);
+        Item expected = new Item(item.getId(), newItem.getName(), newItem.getCreated());
+        assertThat(tracker.findById(item.getId())).isEqualTo(expected);
     }
 
     @Test

@@ -1,7 +1,7 @@
-/*
 package ru.job4j.tracker;
 
 import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
 
 import java.util.List;
 
@@ -9,6 +9,7 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import static org.hamcrest.Matchers.is;
 import static org.hamcrest.core.IsNull.nullValue;
 
+@Disabled
 public class TrackerTest {
     @Test
     public void whenAddNewItemThenTrackerHasSameItem() {
@@ -92,5 +93,3 @@ public class TrackerTest {
         assertThat(tracker.findById(id), is(nullValue()));
     }
 }
-
- */

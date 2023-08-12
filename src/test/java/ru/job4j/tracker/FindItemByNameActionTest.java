@@ -11,6 +11,8 @@ import static org.mockito.Mockito.when;
 
 class FindItemByNameActionTest {
 
+    private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+
     @Test
     public void execute() {
         Output out = new StubOutput();
@@ -26,7 +28,6 @@ class FindItemByNameActionTest {
         findItemByIdAction.execute(input, tracker);
 
         String ln = System.lineSeparator();
-        DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
         String result = String.format("Item{id=%s, name='%s', created=%s}",
                 tracker.findById(1).getId(), tracker.findById(1).getName(), tracker.findById(1).getCreated().format(FORMATTER));
         assertThat(out.toString()).isEqualTo("=== Find items by name ===" + ln + result + ln);

@@ -13,4 +13,22 @@ public class Item {
     private String name;
     private LocalDateTime created = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
+
+    public Item() {
+    }
+
+    public Item(String name) {
+        this.name = name;
+    }
+
+    public Item(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
+
+    public Item(int id, String name, LocalDateTime created) {
+        this.id = id;
+        this.name = name;
+        this.created = created;
+    }
 }

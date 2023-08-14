@@ -13,7 +13,7 @@ import java.util.Objects;
 @AllArgsConstructor
 @RequiredArgsConstructor
 public class Item {
-    @NonNull
+
     @Getter
     @Setter
     private int id;
@@ -28,7 +28,12 @@ public class Item {
     private LocalDateTime created = LocalDateTime.now().truncatedTo(ChronoUnit.MINUTES);
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern("dd-MMMM-EEEE-yyyy HH:mm:ss");
 
-    public Item(String name) {
+    public Item(int id) {
+        this.id = id;
+    }
+
+    public Item(int id, @NonNull String name) {
+        this.id = id;
         this.name = name;
     }
 }

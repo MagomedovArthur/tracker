@@ -76,9 +76,7 @@ public class HbmTracker implements Store, AutoCloseable {
         List<Item> resultList = new ArrayList<>();
         try {
             Query query = session.createQuery("from Item");
-            for (Object st : query.list()) {
-                resultList.add((Item) st);
-            }
+            resultList = query.list();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
@@ -94,9 +92,7 @@ public class HbmTracker implements Store, AutoCloseable {
         try {
             Query query = session.createQuery("from Item where name = :fName")
                     .setParameter("fName", key);
-            for (Object st : query.list()) {
-                resultList.add((Item) st);
-            }
+            resultList = query.list();
         } catch (Exception e) {
             session.getTransaction().rollback();
         } finally {
